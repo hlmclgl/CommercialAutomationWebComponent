@@ -1,0 +1,25 @@
+﻿@model MvcFirmaCagri.Models.Entity.TblCalls
+
+@{
+    ViewBag.Title = "GetCall";
+    Layout = "~/Views/Shared/FirmLayout.cshtml";
+}
+
+<h2>Çağrı Düzenleme Sayfası</h2>
+<br />
+@using (Html.BeginForm("EditCall", "Default", FormMethod.Post))
+{
+    @Html.HiddenFor(x => x.ID);
+
+    @Html.Label("Konu")
+    @Html.TextBoxFor(x => x.Issue, new { @class = "form-control" })
+    <br />
+    @Html.Label("Açıklama")
+    @Html.TextAreaFor(x => x.Description, 10, 4, new { @class = "form-control" })
+    <br />
+    <button class="btn btn-primary">Değişiklikleri Kaydet</button>
+
+}
+
+
+

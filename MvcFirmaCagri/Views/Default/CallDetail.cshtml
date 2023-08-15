@@ -1,0 +1,30 @@
+﻿@using MvcFirmaCagri.Models.Entity;
+@model List<TblCallDetails>
+@{
+    ViewBag.Title = "CallDetail";
+    Layout = "~/Views/Shared/FirmLayout.cshtml";
+}
+
+
+<h3>Çağrı Detayları</h3>
+<br />
+<table class=" table table-bordered">
+    <tr>
+        <th>#</th>
+        <th>Açıklama</th>
+        <th>Tarih</th>
+        <th>Saat</th>
+
+    </tr>
+    @foreach (var calls in Model)
+    {
+        <tr>
+            <td>@calls.ID</td>
+            <td>@calls.Description</td>
+            <td>@calls.Date</td>
+            <td>@calls.Hour</td>
+        </tr>
+    }
+
+</table>
+

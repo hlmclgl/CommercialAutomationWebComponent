@@ -1,0 +1,27 @@
+﻿@using MvcFirmaCagri.Models.Entity;
+@model List<TblCalls>
+@{
+    ViewBag.Title = "PassiveCalls";
+    Layout = "~/Views/Shared/FirmLayout.cshtml";
+}
+
+<table class=" table table-bordered">
+    <tr>
+        <th>ID</th>
+        <th>Konu</th>
+        <th>Tarih</th>
+        <th>Detaylar</th>
+    </tr>
+    @foreach (var calls in Model)
+    {
+        <tr>
+            <td>@calls.ID</td>
+            <td>@calls.Issue</td>
+            <td>@calls.Date</td>
+            <td><a href="#" class="btn btn-info">Detaylar</a></td>
+        </tr>
+    }
+
+</table>
+<a href="/Default/NewCall/" class="btn btn-primary">Yeni Çağrı Ekle</a>
+
