@@ -7,6 +7,7 @@ using System.Web.Mvc;
 
 namespace MvcFirmaCagri.Controllers
 {
+    [Authorize]
     public class DefaultController : Controller
     {
         // GET: Default
@@ -16,6 +17,7 @@ namespace MvcFirmaCagri.Controllers
         }
 
         DbServisEntities db = new DbServisEntities();
+        [Authorize]
         public ActionResult ActiveCalls()
         {
             var calls = db.TblCalls.Where(x=>x.Status==true && x.CallFirm ==5).ToList();

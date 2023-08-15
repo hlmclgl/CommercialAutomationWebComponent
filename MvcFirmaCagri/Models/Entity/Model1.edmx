@@ -49,6 +49,7 @@
           <Property Name="Name" Type="nvarchar" MaxLength="30" />
           <Property Name="Officer" Type="nvarchar" MaxLength="30" />
           <Property Name="Mail" Type="nvarchar" MaxLength="50" />
+          <Property Name="Password" Type="nvarchar" MaxLength="20" />
           <Property Name="Phone" Type="nvarchar" MaxLength="20" />
           <Property Name="Sector" Type="nvarchar" MaxLength="30" />
           <Property Name="City" Type="nvarchar" MaxLength="30" />
@@ -242,6 +243,7 @@
           <Property Name="Town" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
           <Property Name="Address" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="TblCalls" Relationship="Self.FK_TblCalls_TblFirms" FromRole="TblFirms" ToRole="TblCalls" />
+          <Property Name="Password" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
         </EntityType>
         <EntityType Name="TblStaffs">
           <Key>
@@ -439,6 +441,7 @@
           <EntitySetMapping Name="TblFirms">
             <EntityTypeMapping TypeName="DbServisModel.TblFirms">
               <MappingFragment StoreEntitySet="TblFirms">
+                <ScalarProperty Name="Password" ColumnName="Password" />
                 <ScalarProperty Name="ID" ColumnName="ID" />
                 <ScalarProperty Name="Name" ColumnName="Name" />
                 <ScalarProperty Name="Officer" ColumnName="Officer" />
