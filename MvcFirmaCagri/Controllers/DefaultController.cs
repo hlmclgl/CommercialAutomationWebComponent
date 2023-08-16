@@ -113,5 +113,15 @@ namespace MvcFirmaCagri.Controllers
             ViewBag.m = messagecount;
             return PartialView(messages);
         }
+
+        public PartialViewResult Partial2()
+        {
+            var mail = (string)Session["Mail"];
+            var id = db.TblFirms.Where(x => x.Mail == mail).Select(y => y.ID).FirstOrDefault();
+            var calls = db.TblCalls.Where(x => x.CallFirm == id && x.Status == true).ToList();
+            //var messagecount = db.TblMessages.Where(x => x.Receiver == mail && x.Status == true).Count();
+            //ViewBag.m = messagecount;
+            return PartialView(calls);
+        }
     }
 }
