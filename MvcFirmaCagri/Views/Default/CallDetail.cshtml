@@ -6,25 +6,38 @@
 }
 
 
-<h3>Çağrı Detayları</h3>
+<h1><strong>Çağrı Detayları</strong></h1>
 <br />
-<table class=" table table-bordered">
-    <tr>
-        <th>#</th>
-        <th>Açıklama</th>
-        <th>Tarih</th>
-        <th>Saat</th>
 
-    </tr>
-    @foreach (var calls in Model)
-    {
+@if (ViewBag.c > 0)
+{
+    <table class=" table table-bordered">
         <tr>
-            <td>@calls.ID</td>
-            <td>@calls.Description</td>
-            <td>@calls.Date</td>
-            <td>@calls.Hour</td>
-        </tr>
-    }
+            <th>#</th>
+            <th>Açıklama</th>
+            <th>Tarih</th>
+            <th>Saat</th>
 
-</table>
+        </tr>
+        @foreach (var calls in Model)
+        {
+            <tr>
+                <td>@calls.ID</td>
+                <td>@calls.Description</td>
+                <td>@calls.Date</td>
+                <td>@calls.Hour</td>
+            </tr>
+        }
+
+    </table>
+}
+else
+{
+    <h3><strong>Çağrınız sıraya alınmıştır lütfen bekleyiniz ...</strong></h3>
+    <br />
+    <p>Eğer çağrınız çok acil ise lütfen bize ulaşın kısmındaki numaramızdan bizimle direkt iletişime geçip çağrınızın aciliyet durumunu bildiriniz.</p>
+    <br />
+}
+
+
 

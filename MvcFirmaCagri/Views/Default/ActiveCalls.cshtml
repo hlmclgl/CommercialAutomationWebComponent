@@ -5,27 +5,42 @@
     Layout = "~/Views/Shared/FirmLayout.cshtml";
 }
 
+<h3><strong>Aktif Çağrılar</strong></h3>
+<br />
+
+@if (ViewBag.c > 0)
+{
+    <table class=" table table-bordered">
+        <tr>
+            <th>ID</th>
+            <th>Konu</th>
+            <th>Tarih</th>
+            <th>Düzenle</th>
+            <th>Detaylar</th>
+        </tr>
 
 
-<table class=" table table-bordered">
-    <tr>
-        <th>ID</th>
-        <th>Konu</th>
-        <th>Tarih</th>
-        <th>Düzenle</th>
-        <th>Detaylar</th>
-    </tr>
-    @foreach(var calls in Model)
-            {
-                <tr>
-                    <td>@calls.ID</td>
-                    <td>@calls.Issue</td>
-                    <td>@calls.Date</td>
-                    <td><a href="/Default/GetCall/@calls.ID/" class="btn btn-success">Düzenle</a></td>
-                    <td><a href="/Default/CallDetail/@calls.ID/" class="btn btn-info">Detaylar</a></td>
-                </tr>
-            }
-    
-</table>
+
+        @foreach (var calls in Model)
+        {
+            <tr>
+                <td>@calls.ID</td>
+                <td>@calls.Issue</td>
+                <td>@calls.Date</td>
+                <td><a href="/Default/GetCall/@calls.ID/" class="btn btn-success">Düzenle</a></td>
+                <td><a href="/Default/CallDetail/@calls.ID/" class="btn btn-info">Detaylar</a></td>
+            </tr>
+        }
+
+    </table>
+
+}
+else
+{
+    <h3><strong>Aktif Çağrınız Mevcut Değildir.</strong></h3>
+    <br />
+    <p>Aşağıdaki butondan ilgili personelimize çağrı bırakabilirsiniz.</p>
+    <br />
+}
 <a href="/Default/NewCall/" class="btn btn-primary">Yeni Çağrı Ekle</a>
 

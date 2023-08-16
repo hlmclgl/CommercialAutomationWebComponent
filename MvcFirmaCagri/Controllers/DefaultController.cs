@@ -24,12 +24,16 @@ namespace MvcFirmaCagri.Controllers
             var id = db.TblFirms.Where(x => x.Mail == mail).Select(y => y.ID).FirstOrDefault();
 
             var calls = db.TblCalls.Where(x=>x.Status==true && x.CallFirm ==id).ToList();
+            ViewBag.c = calls.Count();
             return View(calls);
         }
 
         public ActionResult PassiveCalls()
         {
-            var calls = db.TblCalls.Where(x => x.Status == false ).ToList();
+            var mail = (string)Session["Mail"];
+            var id = db.TblFirms.Where(x => x.Mail == mail).Select(y => y.ID).FirstOrDefault();
+            var calls = db.TblCalls.Where(x => x.Status == false && x.CallFirm == id ).ToList();
+            ViewBag.c = calls.Count();
             return View(calls);
         }
 
@@ -42,9 +46,12 @@ namespace MvcFirmaCagri.Controllers
         [HttpPost]
         public ActionResult NewCall(TblCalls c)
         {
+            var mail = (string)Session["Mail"];
+            var id = db.TblFirms.Where(x => x.Mail == mail).Select(y => y.ID).FirstOrDefault();
+            
             c.Status = true;
             c.Date = DateTime.Parse(DateTime.Now.ToShortDateString());
-            c.CallFirm = 5;
+            c.CallFirm = id;
             db.TblCalls.Add(c);
             db.SaveChanges();
             return RedirectToAction("ActiveCalls");
@@ -53,6 +60,7 @@ namespace MvcFirmaCagri.Controllers
         public ActionResult CallDetail(int id)
         {
             var calls = db.TblCallDetails.Where(x => x.Call == id).ToList();
+            ViewBag.c = calls.Count();
             return View(calls);
         }
 
@@ -69,6 +77,15 @@ namespace MvcFirmaCagri.Controllers
             call.Description = c.Description;
             db.SaveChanges();
             return RedirectToAction("ActiveCalls");
+        }
+
+        [HttpGet]
+        public ActionResult EditProfile()
+        {
+            var mail = (string)Session["Mail"];
+            var id = db.TblFirms.Where(x => x.Mail == mail).Select(y => y.ID).FirstOrDefault();
+            var profile = db.TblFirms.Where(x=>x.ID == id).FirstOrDefault();
+            return View(profile);
         }
     }
 }
