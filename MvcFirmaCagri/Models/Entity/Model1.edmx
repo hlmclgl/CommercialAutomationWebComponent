@@ -56,6 +56,18 @@
           <Property Name="Town" Type="nvarchar" MaxLength="30" />
           <Property Name="Address" Type="nvarchar" MaxLength="200" />
         </EntityType>
+        <EntityType Name="TblMessages">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Sender" Type="nvarchar" MaxLength="50" />
+          <Property Name="Receiver" Type="nvarchar" MaxLength="50" />
+          <Property Name="Issue" Type="nvarchar" MaxLength="50" />
+          <Property Name="Message" Type="nvarchar(max)" />
+          <Property Name="Date" Type="date" />
+          <Property Name="Status" Type="bit" />
+        </EntityType>
         <EntityType Name="TblStaffs">
           <Key>
             <PropertyRef Name="ID" />
@@ -168,6 +180,7 @@
           <EntitySet Name="TblCalls" EntityType="Self.TblCalls" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="TblDepartments" EntityType="Self.TblDepartments" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="TblFirms" EntityType="Self.TblFirms" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TblMessages" EntityType="Self.TblMessages" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="TblStaffs" EntityType="Self.TblStaffs" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="TblTaskDetails" EntityType="Self.TblTaskDetails" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="TblTasks" EntityType="Self.TblTasks" Schema="dbo" store:Type="Tables" />
@@ -379,6 +392,7 @@
             <End Role="TblCalls" EntitySet="TblCalls" />
             <End Role="TblCallDetails" EntitySet="TblCallDetails" />
           </AssociationSet>
+          <EntitySet Name="TblMessages" EntityType="DbServisModel.TblMessages" />
         </EntityContainer>
         <EntityType Name="TblCallDetails">
           <Key>
@@ -403,6 +417,18 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <EntityType Name="TblMessages">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Sender" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Receiver" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Issue" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Message" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Date" Type="DateTime" Precision="0" />
+          <Property Name="Status" Type="Boolean" />
+        </EntityType>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -498,6 +524,19 @@
                 <ScalarProperty Name="Date" ColumnName="Date" />
                 <ScalarProperty Name="Description" ColumnName="Description" />
                 <ScalarProperty Name="Call" ColumnName="Call" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TblMessages">
+            <EntityTypeMapping TypeName="DbServisModel.TblMessages">
+              <MappingFragment StoreEntitySet="TblMessages">
+                <ScalarProperty Name="Status" ColumnName="Status" />
+                <ScalarProperty Name="Date" ColumnName="Date" />
+                <ScalarProperty Name="Message" ColumnName="Message" />
+                <ScalarProperty Name="Issue" ColumnName="Issue" />
+                <ScalarProperty Name="Receiver" ColumnName="Receiver" />
+                <ScalarProperty Name="Sender" ColumnName="Sender" />
                 <ScalarProperty Name="ID" ColumnName="ID" />
               </MappingFragment>
             </EntityTypeMapping>

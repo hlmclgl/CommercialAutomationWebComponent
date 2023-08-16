@@ -33,5 +33,6 @@ namespace MvcFirmaCagri.Models.Entity
         public virtual DbSet<TblTaskDetails> TblTaskDetails { get; set; }
         public virtual DbSet<TblTasks> TblTasks { get; set; }
         public virtual DbSet<TblCallDetails> TblCallDetails { get; set; }
+        public virtual DbSet<TblMessages> TblMessages { get; set; }
     }
 }

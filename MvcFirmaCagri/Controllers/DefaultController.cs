@@ -87,5 +87,22 @@ namespace MvcFirmaCagri.Controllers
             var profile = db.TblFirms.Where(x=>x.ID == id).FirstOrDefault();
             return View(profile);
         }
+
+        public ActionResult HomePage()
+        {
+            var mail = (string)Session["Mail"];
+            var id = db.TblFirms.Where(x => x.Mail == mail).Select(y => y.ID).FirstOrDefault();
+            var totalcall = db.TblCalls.Where(x=>x.CallFirm == id).Count();
+            var activecall = db.TblCalls.Where(x => x.CallFirm == id && x.Status == true).Count();
+            var passivecall = db.TblCalls.Where(x => x.CallFirm == id && x.Status == false).Count();
+            var sector = db.TblFirms.Where(x => x.ID == id).Select(y => y.Sector).FirstOrDefault();
+            var officer = db.TblFirms.Where(x=>x.ID == id).Select(y => y.Officer).FirstOrDefault();
+            ViewBag.tc = totalcall;
+            ViewBag.ac = activecall;
+            ViewBag.pc = passivecall;
+            ViewBag.sc = sector;
+            ViewBag.off = officer;
+            return View();
+        }
     }
 }
