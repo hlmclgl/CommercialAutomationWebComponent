@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 using MvcFirmaCagri.Models.Entity;
 using System.Web.Mvc;
+using System.Web.Security;
 
 namespace MvcFirmaCagri.Controllers
 {
@@ -108,8 +109,8 @@ namespace MvcFirmaCagri.Controllers
         public PartialViewResult Partial1()
         {
             var mail = (string)Session["Mail"];
-            var messages = db.TblMessages.Where(x => x.Receiver == mail && x.Status == true).ToList();
-            var messagecount = db.TblMessages.Where(x => x.Receiver == mail && x.Status == true).Count();
+            var messages = db.TblMessages.Where(x => x.Receiver == 1 && x.Status == true).ToList();
+            var messagecount = db.TblMessages.Where(x => x.Receiver == 1 && x.Status == true).Count();
             ViewBag.m = messagecount;
             return PartialView(messages);
         }
@@ -119,9 +120,16 @@ namespace MvcFirmaCagri.Controllers
             var mail = (string)Session["Mail"];
             var id = db.TblFirms.Where(x => x.Mail == mail).Select(y => y.ID).FirstOrDefault();
             var calls = db.TblCalls.Where(x => x.CallFirm == id && x.Status == true).ToList();
-            //var messagecount = db.TblMessages.Where(x => x.Receiver == mail && x.Status == true).Count();
-            //ViewBag.m = messagecount;
+            var callcount = db.TblCalls.Where(x => x.CallFirm == id && x.Status == true).Count();
+            ViewBag.c = callcount;
             return PartialView(calls);
+        }
+
+        public ActionResult LogOut()
+        {
+            FormsAuthentication.SignOut();
+            Session.Abandon();
+            return RedirectToAction("Index", "Login");
         }
     }
 }

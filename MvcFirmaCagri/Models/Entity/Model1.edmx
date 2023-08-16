@@ -55,14 +55,15 @@
           <Property Name="City" Type="nvarchar" MaxLength="30" />
           <Property Name="Town" Type="nvarchar" MaxLength="30" />
           <Property Name="Address" Type="nvarchar" MaxLength="200" />
+          <Property Name="Image" Type="nvarchar" MaxLength="250" />
         </EntityType>
         <EntityType Name="TblMessages">
           <Key>
             <PropertyRef Name="ID" />
           </Key>
           <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="Sender" Type="nvarchar" MaxLength="50" />
-          <Property Name="Receiver" Type="nvarchar" MaxLength="50" />
+          <Property Name="Sender" Type="int" />
+          <Property Name="Receiver" Type="int" />
           <Property Name="Issue" Type="nvarchar" MaxLength="50" />
           <Property Name="Message" Type="nvarchar(max)" />
           <Property Name="Date" Type="date" />
@@ -123,6 +124,30 @@
             </Principal>
             <Dependent Role="TblCalls">
               <PropertyRef Name="CallFirm" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TblMessages_TblFirms">
+          <End Role="TblFirms" Type="Self.TblFirms" Multiplicity="0..1" />
+          <End Role="TblMessages" Type="Self.TblMessages" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TblFirms">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="TblMessages">
+              <PropertyRef Name="Sender" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TblMessages_TblFirms1">
+          <End Role="TblFirms" Type="Self.TblFirms" Multiplicity="0..1" />
+          <End Role="TblMessages" Type="Self.TblMessages" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TblFirms">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="TblMessages">
+              <PropertyRef Name="Receiver" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -192,6 +217,14 @@
             <End Role="TblFirms" EntitySet="TblFirms" />
             <End Role="TblCalls" EntitySet="TblCalls" />
           </AssociationSet>
+          <AssociationSet Name="FK_TblMessages_TblFirms" Association="Self.FK_TblMessages_TblFirms">
+            <End Role="TblFirms" EntitySet="TblFirms" />
+            <End Role="TblMessages" EntitySet="TblMessages" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TblMessages_TblFirms1" Association="Self.FK_TblMessages_TblFirms1">
+            <End Role="TblFirms" EntitySet="TblFirms" />
+            <End Role="TblMessages" EntitySet="TblMessages" />
+          </AssociationSet>
           <AssociationSet Name="FK_TblStaffs_TblDepartments" Association="Self.FK_TblStaffs_TblDepartments">
             <End Role="TblDepartments" EntitySet="TblDepartments" />
             <End Role="TblStaffs" EntitySet="TblStaffs" />
@@ -257,6 +290,9 @@
           <Property Name="Address" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="TblCalls" Relationship="Self.FK_TblCalls_TblFirms" FromRole="TblFirms" ToRole="TblCalls" />
           <Property Name="Password" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="Image" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="TblMessages" Relationship="DbServisModel.FK_TblMessages_TblFirms" FromRole="TblFirms" ToRole="TblMessages" />
+          <NavigationProperty Name="TblMessages1" Relationship="DbServisModel.FK_TblMessages_TblFirms1" FromRole="TblFirms" ToRole="TblMessages" />
         </EntityType>
         <EntityType Name="TblStaffs">
           <Key>
@@ -393,6 +429,14 @@
             <End Role="TblCallDetails" EntitySet="TblCallDetails" />
           </AssociationSet>
           <EntitySet Name="TblMessages" EntityType="DbServisModel.TblMessages" />
+          <AssociationSet Name="FK_TblMessages_TblFirms" Association="DbServisModel.FK_TblMessages_TblFirms">
+            <End Role="TblFirms" EntitySet="TblFirms" />
+            <End Role="TblMessages" EntitySet="TblMessages" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TblMessages_TblFirms1" Association="DbServisModel.FK_TblMessages_TblFirms1">
+            <End Role="TblFirms" EntitySet="TblFirms" />
+            <End Role="TblMessages" EntitySet="TblMessages" />
+          </AssociationSet>
         </EntityContainer>
         <EntityType Name="TblCallDetails">
           <Key>
@@ -422,13 +466,39 @@
             <PropertyRef Name="ID" />
           </Key>
           <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Sender" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="Receiver" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Sender" Type="Int32" />
+          <Property Name="Receiver" Type="Int32" />
           <Property Name="Issue" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="Message" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="Date" Type="DateTime" Precision="0" />
           <Property Name="Status" Type="Boolean" />
+          <NavigationProperty Name="TblFirms" Relationship="DbServisModel.FK_TblMessages_TblFirms" FromRole="TblMessages" ToRole="TblFirms" />
+          <NavigationProperty Name="TblFirms1" Relationship="DbServisModel.FK_TblMessages_TblFirms1" FromRole="TblMessages" ToRole="TblFirms" />
         </EntityType>
+        <Association Name="FK_TblMessages_TblFirms">
+          <End Type="DbServisModel.TblFirms" Role="TblFirms" Multiplicity="0..1" />
+          <End Type="DbServisModel.TblMessages" Role="TblMessages" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TblFirms">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="TblMessages">
+              <PropertyRef Name="Sender" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TblMessages_TblFirms1">
+          <End Type="DbServisModel.TblFirms" Role="TblFirms" Multiplicity="0..1" />
+          <End Type="DbServisModel.TblMessages" Role="TblMessages" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TblFirms">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="TblMessages">
+              <PropertyRef Name="Receiver" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -467,6 +537,7 @@
           <EntitySetMapping Name="TblFirms">
             <EntityTypeMapping TypeName="DbServisModel.TblFirms">
               <MappingFragment StoreEntitySet="TblFirms">
+                <ScalarProperty Name="Image" ColumnName="Image" />
                 <ScalarProperty Name="Password" ColumnName="Password" />
                 <ScalarProperty Name="ID" ColumnName="ID" />
                 <ScalarProperty Name="Name" ColumnName="Name" />

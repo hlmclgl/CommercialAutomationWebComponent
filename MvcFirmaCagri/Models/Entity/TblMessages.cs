@@ -15,11 +15,14 @@ namespace MvcFirmaCagri.Models.Entity
     public partial class TblMessages
     {
         public int ID { get; set; }
-        public string Sender { get; set; }
-        public string Receiver { get; set; }
+        public Nullable<int> Sender { get; set; }
+        public Nullable<int> Receiver { get; set; }
         public string Issue { get; set; }
         public string Message { get; set; }
         public Nullable<System.DateTime> Date { get; set; }
         public Nullable<bool> Status { get; set; }
+    
+        public virtual TblFirms TblFirms { get; set; }
+        public virtual TblFirms TblFirms1 { get; set; }
     }
 }
