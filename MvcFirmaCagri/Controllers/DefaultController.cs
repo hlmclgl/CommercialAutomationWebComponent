@@ -108,7 +108,9 @@ namespace MvcFirmaCagri.Controllers
         public PartialViewResult Partial1()
         {
             var mail = (string)Session["Mail"];
-            var messages = db.TblMessages.Where(x => x.Receiver == mail).ToList();
+            var messages = db.TblMessages.Where(x => x.Receiver == mail && x.Status == true).ToList();
+            var messagecount = db.TblMessages.Where(x => x.Receiver == mail && x.Status == true).Count();
+            ViewBag.m = messagecount;
             return PartialView(messages);
         }
     }
