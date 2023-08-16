@@ -89,59 +89,7 @@ Author URL: http://w3layouts.com
                                         </li>
                                     </ul>
                                 </li>
-                                <li class="dropdown">
-                                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
-                                        <i class="fa fa-comment-o"></i><span class="badge blue">4</span>
-                                    </a>
-                                    <ul class="dropdown-menu">
-                                        <li>
-                                            <div class="notification_header">
-                                                <h3>You have 4 new messages</h3>
-                                            </div>
-                                        </li>
-                                        <li>
-                                            <a href="#" class="grid">
-                                                <div class="user_img"><img src="~/web2/starter/assets/images/avatar1.jpg" alt=""></div>
-                                                <div class="notification_desc">
-                                                    <p>Johnson purchased template</p>
-                                                    <span>Just Now</span>
-                                                </div>
-                                            </a>
-                                        </li>
-                                        <li class="odd">
-                                            <a href="#" class="grid">
-                                                <div class="user_img"><img src="~/web2/starter/assets/images/avatar2.jpg" alt=""></div>
-                                                <div class="notification_desc">
-                                                    <p>New customer registered </p>
-                                                    <span>1 hour ago</span>
-                                                </div>
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a href="#" class="grid">
-                                                <div class="user_img"><img src="~/web2/starter/assets/images/avatar3.jpg" alt=""></div>
-                                                <div class="notification_desc">
-                                                    <p>Lorem ipsum dolor sit amet </p>
-                                                    <span>2 hours ago</span>
-                                                </div>
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a href="#" class="grid">
-                                                <div class="user_img"><img src="~/web2/starter/assets/images/avatar1.jpg" alt=""></div>
-                                                <div class="notification_desc">
-                                                    <p>Johnson purchased template</p>
-                                                    <span>Just Now</span>
-                                                </div>
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <div class="notification_bottom">
-                                                <a href="#all" class="bg-primary">See all messages</a>
-                                            </div>
-                                        </li>
-                                    </ul>
-                                </li>
+                                @Html.Action("Partial1","Default")
                             </ul>
                         </div>
                         <div class="profile_details">
@@ -161,9 +109,9 @@ Author URL: http://w3layouts.com
                                             <h5 class="user-name">Firma Adı</h5>
                                             <span class="status ml-2">Aktif</span>
                                         </li>
-                                        <li> <a href="/Default/ActiveCalls/"><i class="lnr lnr-phone-handset"></i>Aktif Çağrılar</a> </li>
-                                        <li> <a href="/Default/PassiveCalls/"><i class="lnr lnr-checkmark-circle"></i>Tamamlanmış Çağrılar</a> </li>
-                                        <li> <a href="/Default/NewCall/"><i class="lnr lnr-bubble"></i>Yeni Çağrı</a> </li>
+                                        <li> <a href="/Default/ActiveCalls/"><i class="lnr lnr-phone-handset"></i>Aktif Destek Talepleri</a> </li>
+                                        <li> <a href="/Default/PassiveCalls/"><i class="lnr lnr-checkmark-circle"></i>Tamamlanmış Talep</a> </li>
+                                        <li> <a href="/Default/NewCall/"><i class="lnr lnr-bubble"></i>Yeni Destek Talebi</a> </li>
                                         <li> <a href="/Default/EditProfile/"><i class="lnr lnr-cog"></i>Profilimi Düzenle</a> </li>
                                         <li class="logout"> <a href="#sign-up.html"><i class="fa fa-power-off"></i> Çıkış Yap</a> </li>
                                     </ul>
