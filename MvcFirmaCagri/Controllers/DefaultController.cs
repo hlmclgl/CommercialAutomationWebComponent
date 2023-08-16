@@ -20,7 +20,10 @@ namespace MvcFirmaCagri.Controllers
         [Authorize]
         public ActionResult ActiveCalls()
         {
-            var calls = db.TblCalls.Where(x=>x.Status==true && x.CallFirm ==5).ToList();
+            var mail = (string)Session["Mail"];
+            var id = db.TblFirms.Where(x => x.Mail == mail).Select(y => y.ID).FirstOrDefault();
+
+            var calls = db.TblCalls.Where(x=>x.Status==true && x.CallFirm ==id).ToList();
             return View(calls);
         }
 
