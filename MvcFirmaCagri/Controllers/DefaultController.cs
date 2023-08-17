@@ -98,12 +98,15 @@ namespace MvcFirmaCagri.Controllers
             var passivecall = db.TblCalls.Where(x => x.CallFirm == id && x.Status == false).Count();
             var sector = db.TblFirms.Where(x => x.ID == id).Select(y => y.Sector).FirstOrDefault();
             var officer = db.TblFirms.Where(x=>x.ID == id).Select(y => y.Officer).FirstOrDefault();
-            var firmname =
+            var firmname = db.TblFirms.Where(x => x.ID == id).Select(y => y.Name).FirstOrDefault();
+            var firmimage = db.TblFirms.Where(x => x.ID == id).Select(y => y.Image).FirstOrDefault();
             ViewBag.tc = totalcall;
             ViewBag.ac = activecall;
             ViewBag.pc = passivecall;
             ViewBag.sc = sector;
             ViewBag.off = officer;
+            ViewBag.fn = firmname;
+            ViewBag.fi = firmimage;
             return View();
         }
 
