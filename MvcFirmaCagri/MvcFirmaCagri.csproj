@@ -221,6 +221,8 @@
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="web2\starter\assets\css\style-starter.css" />
     <Content Include="web2\starter\assets\fonts\fontawesome-webfont.svg" />
+    <Content Include="web2\starter\assets\images\admin.jpg" />
+    <Content Include="web2\starter\assets\images\administration-vector-icon.jpg" />
     <Content Include="web2\starter\assets\images\avatar1.jpg" />
     <Content Include="web2\starter\assets\images\avatar2.jpg" />
     <Content Include="web2\starter\assets\images\avatar3.jpg" />
@@ -250,6 +252,7 @@
     <Content Include="web2\starter\assets\images\team4.jpg" />
     <Content Include="web2\starter\assets\images\template1.jpg" />
     <Content Include="web2\starter\assets\images\template2.jpg" />
+    <Content Include="web2\starter\assets\images\user-512.png" />
     <Content Include="web2\starter\assets\js\bar.js" />
     <Content Include="web2\starter\assets\js\bootstrap.min.js" />
     <Content Include="web2\starter\assets\js\Chart.min.js" />
@@ -557,6 +560,7 @@
     <Content Include="web2\starter\assets\fonts\FontAwesome.otf" />
     <Content Include="Views\Default\Partial1.cshtml" />
     <Content Include="Views\Default\Partial2.cshtml" />
+    <Content Include="Views\Default\Partial3.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

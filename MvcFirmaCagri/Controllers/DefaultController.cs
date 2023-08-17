@@ -98,6 +98,7 @@ namespace MvcFirmaCagri.Controllers
             var passivecall = db.TblCalls.Where(x => x.CallFirm == id && x.Status == false).Count();
             var sector = db.TblFirms.Where(x => x.ID == id).Select(y => y.Sector).FirstOrDefault();
             var officer = db.TblFirms.Where(x=>x.ID == id).Select(y => y.Officer).FirstOrDefault();
+            var firmname =
             ViewBag.tc = totalcall;
             ViewBag.ac = activecall;
             ViewBag.pc = passivecall;
@@ -109,8 +110,9 @@ namespace MvcFirmaCagri.Controllers
         public PartialViewResult Partial1()
         {
             var mail = (string)Session["Mail"];
-            var messages = db.TblMessages.Where(x => x.Receiver == 1 && x.Status == true).ToList();
-            var messagecount = db.TblMessages.Where(x => x.Receiver == 1 && x.Status == true).Count();
+            var id = db.TblFirms.Where(x => x.Mail == mail).Select(y => y.ID).FirstOrDefault();
+            var messages = db.TblMessages.Where(x => x.Receiver == id && x.Status == true).ToList();
+            var messagecount = db.TblMessages.Where(x => x.Receiver == id && x.Status == true).Count();
             ViewBag.m = messagecount;
             return PartialView(messages);
         }
@@ -130,6 +132,11 @@ namespace MvcFirmaCagri.Controllers
             FormsAuthentication.SignOut();
             Session.Abandon();
             return RedirectToAction("Index", "Login");
+        }
+
+        public PartialViewResult Partial3()
+        {
+            return PartialView();
         }
     }
 }
